@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>LORD MONK 🫧 STREAM</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<style>
+body{
+background:#050b17;
+color:white;
+font-family:Arial;
+transition:0.4s;
+overflow-x:hidden;
+}
+
+/* Animated Gradient Logo */
+.logo{
+font-size:28px;
+font-weight:bold;
+background:linear-gradient(90deg,#00e5ff,#7b2cff,#00e5ff);
+background-size:200%;
+-webkit-background-clip:text;
+color:transparent;
+animation:glow 4s linear infinite;
+}
+@keyframes glow{
+0%{background-position:0%}
+100%{background-position:200%}
+}
+
+.card{
+background:rgba(0,0,0,.6);
+backdrop-filter:blur(10px);
+margin:20px;
+padding:15px;
+border-radius:15px;
+box-shadow:0 0 20px rgba(0,183,255,.3);
+}
+
+button{
+background:#00e5ff;
+border:none;
+padding:6px 12px;
+border-radius:6px;
+cursor:pointer;
+margin:5px 0;
+}
+
+#chatBox{
+height:160px;
+overflow:auto;
+border:1px solid #00e5ff;
+padding:8px;
+margin-top:8px;
+}
+
+.light{
+background:#f4f4f4;
+color:#111;
+}
+.light .card{
+background:white;
+color:#111;
+}
+</style>
+</head>
+
+<body>
+
+<div class="card" style="text-align:center">
+<div class="logo">🫧 LORD MONK STREAM 💙</div>
+<p>Global Football Broadcast Network</p>
+
+<button onclick="toggleMode()">🌙/☀ Mode</button>
+<button onclick="toggleSound()">🔊 Stadium Sound</button>
+</div>
+
+<div class="card">
+🟢 <span id="watching">1000</span> Fans Watching Worldwide
+</div>
+
+<div class="card">
+⏳ Next Big Match Starts In:
+<div id="countdown"></div>
+</div>
+
+<div class="card">
+<h3>⭐ Match of the Day</h3>
+<iframe src="https://www.scorebat.com/embed/livescore/" style="width:100%;height:240px;border:none;border-radius:12px"></iframe>
+</div>
+
+<div class="card">
+<h3>📊 Live Stats (Demo)</h3>
+⚽ Possession: 60% - 40% <br>
+🎯 Shots: 8 - 5 <br>
+⏱ Time: 67'
+</div>
+
+<div class="card">
+<h3>🏆 Top Leagues</h3>
+Premier League • La Liga • Champions League • Serie A • Bundesliga
+</div>
+
+<div class="card">
+<h3>📅 Fixtures</h3>
+<iframe src="https://www.scorebat.com/embed/" style="width:100%;height:240px;border:none"></iframe>
+</div>
+
+<div class="card">
+<h3>🎥 Replay Zone</h3>
+<iframe src="https://www.scorebat.com/embed/" style="width:100%;height:240px;border:none"></iframe>
+</div>
+
+<div class="card">
+<h3>💬 Community Chat</h3>
+
+<input id="name" placeholder="Your name" style="width:40%">
+<input id="msg" placeholder="Type message..." style="width:50%">
+<button onclick="send()">Send</button>
+
+<div id="chatBox"></div>
+</div>
+
+<footer class="card" style="text-align:center;color:#aaa">
+⚠ Disclaimer: No pirated streaming hosted.<br>
+© 2026 LORD MONK STREAM 🫧
+</footer>
+
+<script>
+
+/* Watching animation */
+let w=1000;
+setInterval(()=>{
+w+=Math.floor(Math.random()*5);
+document.getElementById("watching").textContent=w;
+},2000);
+
+/* Countdown 24h demo */
+let target=new Date().getTime()+86400000;
+setInterval(()=>{
+let now=new Date().getTime();
+let diff=target-now;
+let h=Math.floor(diff/(1000*60*60));
+let m=Math.floor((diff%(1000*60*60))/(1000*60));
+let s=Math.floor((diff%(1000*60))/1000);
+document.getElementById("countdown").textContent=
+h+"h "+m+"m "+s+"s";
+},1000);
+
+/* Chat */
+function send(){
+let name=document.getElementById("name").value||"Fan";
+let msg=document.getElementById("msg");
+if(msg.value.trim()){
+let d=document.createElement("div");
+d.textContent=name+": "+msg.value;
+document.getElementById("chatBox").appendChild(d);
+msg.value="";
+}
+}
+
+/* Toggle Mode */
+function toggleMode(){
+document.body.classList.toggle("light");
+}
+
+/* Stadium Sound */
+let audio=new Audio("https://www.soundjay.com/human/crowd-cheer-01.mp3");
+function toggleSound(){
+if(audio.paused){audio.loop=true;audio.play();}
+else{audio.pause();}
+}
+
+</script>
+
+</body>
+</html>
